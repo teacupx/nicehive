@@ -1,8 +1,9 @@
 #!/bin/bash
 
-baseUrl='https://api2.hiveos.farm/api/v2'
-login='HIVEOS_LOGIN'
-password='HIVEOS_PASS'
+## For username/password login
+# baseUrl='https://api2.hiveos.farm/api/v2'
+# login='HIVEOS_LOGIN'
+# password='HIVEOS_PASS'
 
 farm='FARMID'
 worker='WORKERID'
@@ -10,15 +11,20 @@ switchPercent=7
 
 fsPrefix='AUTO'
 
-if [ ! -e /tmp/nicehive.token ] ; then
-  # login
-  response=`curl -s -H "Content-Type: application/json" \
-	  -X POST -d "{\"login\":\"$login\",\"password\":\"$password\"}" "$baseUrl/auth/login"`
-  [ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
-  echo "$response" | jq --raw-output '.access_token' > /tmp/nicehive.token
-fi
+## For username/password login
+# if [ ! -e /tmp/nicehive.token ] ; then
+  ##login
+  # response=`curl -s -H "Content-Type: application/json" \
+	  # -X POST -d "{\"login\":\"$login\",\"password\":\"$password\"}" "$baseUrl/auth/login"`
+  # [ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
+  # echo "$response" | jq --raw-output '.access_token' > /tmp/nicehive.token
+# fi
 
-accessToken=`cat /tmp/nicehive.token`
+# accessToken=`cat /tmp/nicehive.token`
+
+
+## Place API key directly
+accessToken='YOUR_API_KEY'
 
 # get workers
 response=`curl -s -H "Content-Type: application/json" \
